@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+         <record id="purchase_order_form_inh" model="ir.ui.view">
+             <field name="name">purchase.order.form.inh</field>
+             <field name="model">purchase.order</field>
+             <field name="inherit_id" ref="purchase.purchase_order_form" />
+             <field name="arch" type="xml">
+
+                 <xpath expr="//field[@name='currency_id']" position="after">
+                     <field name="purchase_type" required="1"
+                            help="Este campo expresa el tipo de compra a realizar;
+                            si es para Abastecer inventario u oficina o si es para entrega a un cliente " />
+
+                     <field name='sale_order'  attrs="{
+                        'invisible': [('purchase_type','!=','sale_order')],
+                        'required' : [('purchase_type','=','sale_order')]
+                        }" domain="[('state', '!=', 'cancel'), ('state', '!=', 'expired'), ('state', '!=', 'lost'),
+                        ('state', '!=', 'blocked'), ('state', '!=', 'replaced')]"
+                            options="{'no_quick_create':True,'no_create_edit':True, 'no_open': True}"/>
+
+                     <field name='invoice' attrs="{
+                        'invisible': [('purchase_type','!=','invoice')],
+                        'required' : [('purchase_type','=','invoice')]
+                        }" domain="[('state', '!=', 'cancel')]" options="{'no_quick_create':True,'no_create_edit':True, 'no_open': True}"/>
+
+                 </xpath>
+
+                  <xpath expr="//tree[1]/field[@name='product_id']" position="before">
+                     <field name="item_number" string="Item"/>
+                     <field name="image_small" string="Imagen" widget="image"  class="oe_avatar"/>
+                 </xpath>
+                 <xpath expr="//tree[1]/field[@name='name']" position="after">
+                     <field name="qty_available"/>
+                     <field name="immediately_usable_qty"/>
+                     <field name="potential_qty"/>
+                 </xpath>
+
+                  <field name="partner_ref" position="attributes">
+                     <attribute name="required">1</attribute>
+                  </field>
+                 <field name="product_uom" position="attributes">
+                     <attribute name="string">Unidad</attribute>
+                 </field>
+                  <field name="incoterm_id" position="attributes">
+                      <attribute name="required">1</attribute>
+                      <attribute name="help">Los términos de comercio internacional son una serie de condiciones comerciales usadas en las transacciones internacionales.
+                          EXW - Ex Works -
+                          significa que el vendedor cumple su obligación de entrega cuando pone la mercancía, en su establecimiento (fábrica, almacén, etc.), a disposición del comprador.
+                      </attribute>
+                  </field>
+
+                 <!--<field name="payment_term_id" position="attributes">
+                     <attribute name="attrs">{'required' : [('state','=','sent')]}</attribute>
+                 </field>-->
+
+                 <!--<xpath expr="//button[@name='button_approve']" position="replace">
+                     <button name="button_approve" type="object" states="to approve" string="Aprobar Orden" class="oe_highlight" groups="purchase.group_doble_validacion" />
+                 </xpath>-->
+
+                 <!--<xpath expr="//button[@name='button_confirm']" position="replace">
+                     <button name="button_process" type="object" states="draft" string="Procesar" class="oe_highlight" />
+                 </xpath>-->
+
+                 <!--<xpath expr="//button[@name='button_confirm']" position="replace">
+                     <button name="button_approve" type="object" states="to approve" string="Aprobar Orden" class="oe_highlight" groups="purchase.group_doble_validacion" />
+                 </xpath>-->
+
+
+
+             </field>
+          </record>
+
+
+        <record id="purchase_order_tree_inh" model="ir.ui.view">
+             <field name="name">purchase.order.tree</field>
+             <field name="model">purchase.order</field>
+             <field name="inherit_id" ref="purchase.purchase_order_tree" />
+             <field name="arch" type="xml">
+                 <field name="partner_id" position="after">
+                    <field name="partner_ref" string="Ref.Proveedor"/>
+                 </field>
+             </field>
+         </record>
+
+        <record id="view_purchase_order_filter_inh" model="ir.ui.view">
+             <field name="name">purchase.order.tree</field>
+             <field name="model">purchase.order</field>
+             <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+             <field name="arch" type="xml">
+                 <field name="name" position="after">
+                    <filter name="partner_ref" string="Ref.Proveedor" domain="[('partner_ref','!=','')]"/>
+                 </field>
+             </field>
+         </record>
+
+         <!--<record id="purchase.group_doble_validacion" model="res.groups">
+            <field name="name">Doble Validacion</field>
+            <field name="comment">Doble Validacion</field>
+        </record>-->
+    </data>
+</openerp>
