@@ -40,7 +40,7 @@ shop_id.
     'category': 'Uncategorized',
 
     'depends': [
-        'base', 'purchase'
+        'base', 'purchase', 'purchase_stock'
     ],
     'external_dependencies': {
         'python': [
