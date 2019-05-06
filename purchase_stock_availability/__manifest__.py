@@ -9,7 +9,7 @@
     'author': "Devown",
     'category': 'Purchase Management',
     'version': '0.1',
-    'depends': ['purchase','stock'],
+    'depends': ['purchase','stock','purchase_validate'],
 
     'data': [
         'views/purchase_order_view.xml',
