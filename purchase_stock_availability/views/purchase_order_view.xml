@@ -8,8 +8,8 @@
              <field name="arch" type="xml">
                  <xpath expr="//tree[1]/field[@name='name']" position="after">
                      <field name="qty_available"/>
-                     <!--<field name="immediately_usable_qty"/>-->
-                     <!--<field name="potential_qty"/>-->
+                     <field name="immediately_usable_qty"/>
+                     <field name="potential_qty"/>
                  </xpath>
              </field>
 

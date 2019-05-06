@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 
 class OrderLine(models.Model):
-    _inherit = 'order.line'
+    _inherit = 'purchase.order.line'
 
     @api.onchange('product_id')
     @api.multi
