@@ -5,7 +5,7 @@
     <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
     <field name="arch" type="xml">
       <field name="price_unit" position="after">
-        <field name="discount"/>
+        <field name="discount" string="Descuento (%)"/>
         <field name="amount_discount"/>
       </field>
     </field>
@@ -17,7 +17,7 @@
     <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
     <field name="arch" type="xml">
       <field name="price_unit" position="after">
-        <field name="discount"/>
+        <field name="discount" string="Descuento (%)"/>
         <field name="amount_discount"/>
       </field>
     </field>
@@ -29,7 +29,7 @@
     <field name="inherit_id" ref="purchase.purchase_order_form"/>
     <field name="arch" type="xml">
       <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
-        <field name="discount"/>
+        <field name="discount" string="Descuento (%)"/>
         <field name="amount_discount"/>
       </xpath>
 
@@ -40,7 +40,7 @@
 
       <xpath expr="//field[@name='date_order']" position="after">
           <field name="account_analytic_id"/>
-          <field name="discount"/>
+          <field name="discount" string="Descuento (%)"/>
       </xpath>
 
       <field name="order_line" position="attributes">
@@ -55,7 +55,7 @@
     <field name="inherit_id" ref="purchase.purchase_order_form"/>
     <field name="arch" type="xml">
       <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
-        <field name="discount"/>
+        <field name="discount" string="Descuento (%)"/>
         <field name="amount_discount"/>
       </xpath>
     </field>
