@@ -37,7 +37,7 @@ class PurchaseOrder(models.Model):
         for rec in self:
             if rec.product_id:
                 product = self.env['product.product'].search([('id', '=', rec.product_id.id)])
-                rec.potential_qty = product.potential_qty
+                rec.potential_qty = product.product_tmpl_id.potential_qty
 
     potential_qty = fields.Integer(string=u'Potencial', compute='compute_qty_potencial')
 
