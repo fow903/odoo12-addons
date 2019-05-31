@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class PurchaseOrder(models.Model):
@@ -20,6 +20,7 @@ class PurchaseOrder(models.Model):
                 rec.qty_available = product.qty_available
 
     qty_available = fields.Integer(string=u'Disponible', compute='compute_qty')
+
 
     @api.onchange('product_id')
     @api.multi
