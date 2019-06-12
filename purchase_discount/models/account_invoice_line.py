@@ -5,18 +5,10 @@ from odoo import api, models
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+    _inherit = "account.invoice"
 
-    @api.model
-    def new(self, values=None):
-        """
-        Apply the linked to a purchase.order.line.discount to the
-        account_invoice_line
-        """
-        values = {} if values is None else values
-        account_invoice_line = super(
-            AccountInvoiceLine, self).new(values=values)
-        if account_invoice_line.purchase_line_id:
-            account_invoice_line.discount =\
-                account_invoice_line.purchase_line_id.discount
-        return account_invoice_line
+    def _prepare_invoice_line_from_po_line(self, line):
+        vals = super(AccountInvoiceLine, self)._prepare_invoice_line_from_po_line(
+            line)
+        vals['discount'] = line.discount
+        return vals
