@@ -42,6 +42,3 @@ class PurchaseOrder(models.Model):
 
     potential_qty = fields.Integer(string=u'Potencial', compute='compute_qty_potencial')
 
-    account_analytic_id = fields.Many2one('account.analytic.account', string='Analytic Account',
-                                          domain=[('account_type', '=', 'normal')])
-
